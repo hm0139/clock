@@ -1,0 +1,226 @@
+html,
+body {
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  font-family: "Helvetica Neue", "Arial", "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Meiryo", sans-serif;
+}
+
+body {
+  position: fixed;
+}
+
+.container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.hidden {
+  display: none;
+}
+
+.main-content {
+  width: 80%;
+  height: 100%;
+}
+
+.main-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.ui {
+  cursor: pointer;
+}
+
+.ui-item {
+  margin: 20px 0;
+  display: flex;
+  align-items: center;
+}
+
+.ui-right {
+  justify-content: right;
+}
+
+.ui-item > * {
+  margin-right: 10px;
+}
+
+.ui-open-btn {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  padding: 5px;
+  background-color: #606060;
+}
+
+.ui-close-btn {
+  width: 1.5em;
+  height: 1.5em;
+  border: 1px solid #808080;
+  background-color: #606060;
+  color: #000000;
+  text-align: center;
+}
+
+.ui-btn {
+  height: 40px;
+  padding: 5px;
+  border: 2px solid #eeaa00;
+  background-color: #ffccaa;
+  color: #000000;
+  border-radius: 5px;
+}
+
+.ui-btn:hover {
+  border: 2px solid #eebb22;
+  background-color: #ffdd88;
+}
+
+.ui-btn:active {
+  border: 2px solid #aa8800;
+  background-color: #aa7700;
+}
+
+.ui-disabled-btn {
+  height: 40px;
+  padding: 5px;
+  border: 2px solid #505050;
+  background-color: #808080;
+  color: #505050;
+  border-radius: 5px;
+}
+
+.ui-checkbox {
+  border-radius: 8px;
+  width: 15px;
+  height: 15px;
+}
+
+.display-remaining-time {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.ui-select-box {
+  padding: 5px;
+}
+
+/* hamburger menu */
+.hamburger {
+  display: block;
+  height: 60px;
+  margin-left: auto;
+  position: relative;
+  z-index: 10;
+  width: 60px;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.hamburger.-active .hamburger__line {
+  background-color: transparent;
+}
+
+.hamburger.-active .hamburger__line::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.hamburger.-active .hamburger__line::after {
+  top: 0;
+  transform: rotate(-45deg);
+}
+
+.hamburger.-active .hamburger__text::before {
+  content: "閉じる";
+}
+
+.hamburger__line {
+  display: block;
+  height: 2px;
+  position: absolute;
+  top: 23px;
+  right: 50%;
+  transform: translate(50%);
+  width: 24px;
+  background-color: #172e59;
+  transition: 0.4s;
+}
+
+.hamburger__line::before,
+.hamburger__line::after {
+  content: "";
+  display: block;
+  height: 100%;
+  position: absolute;
+  width: 100%;
+  background-color: #172e59;
+  transition: inherit;
+}
+
+.hamburger__line::before {
+  top: -6px;
+}
+
+.hamburger__line::after {
+  top: 6px;
+}
+
+.hamburger__text {
+  position: absolute;
+  bottom: 8px;
+  right: 50%;
+  transform: translateX(50%);
+  width: 100%;
+}
+
+.hamburger__text::before {
+  content: "メニュー";
+  text-align: center;
+  color: #172e59;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.header {
+  position: fixed;
+  right: 0;
+  width: 300px;
+  height: 100vh;
+}
+
+.header__inner {
+  width: 100%;
+  height: 100%;
+}
+
+.header__nav-area {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  z-index: 9;
+  height: 100vh;
+  width: 300px;
+  visibility: hidden;
+  padding-top: 30px;
+  background-color: #ee8877;
+  transition: 0.4s;
+}
+
+.header__nav-area.-active {
+  right: 0;
+  visibility: visible;
+}
+
+.global-navigation {
+  padding-top: 40px;
+  padding-right: 25px;
+  padding-bottom: 120px;
+  padding-left: 25px;
+}
