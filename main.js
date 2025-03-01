@@ -13,6 +13,8 @@ const MIN_SPEED_RATIO = 0.7; //秒に対する最低比率
 const MAX_SPEED_RATIO = 6.0; //秒に対する最高比率
 const STEP_RATIO = 0.02; //一度に加減する量
 
+const CLOCK_RADIUS_RATIO = 0.8; //画面の大きさに対する時計の半径の比率(高さと幅の小さい方が基準)
+
 //時計の半径の長さに対する比
 const HOUR_HANDS_LENGTH_RATIO = 0.6;
 const MINUTE_HANDS_LENGTH_RATIO = 0.8;
@@ -22,6 +24,14 @@ const SECOND_HANDS_LENGTH_RATIO = 1.05;
 const HOUR_HANDS_THICKNESS = 6;
 const MINUTE_HANDS_THICKNESS = 6;
 const SECOND_HANDS_THICKNESS = 2;
+
+//時計の半径が一定以下の場合の針の太さ
+const HOUR_HANDS_THICKNESS_SMALL = 3;
+const MINUTE_HANDS_THICKNESS_SMALL = 3;
+const SECOND_HANDS_THICKNESS_SMALL = 1;
+
+//針の太さを変更する時計の半径(px)
+const BREAK_POINT_RADIUS = 152;
 
 //針の色
 const HOUR_HANDS_COLOR = "#000000";
@@ -215,13 +225,27 @@ function main() {
     slowDownTime: 0,
   });
 
+  let clockSmall = false;
+
   const resize = () => {
     canvas.width = canvas.clientWidth;
     canvas.height = canvas.clientHeight;
     const standardWidth = canvas.width > canvas.height ? canvas.height : canvas.width;
-    clock.radius = (standardWidth / 2) * 0.8;
+    clock.radius = (standardWidth / 2) * CLOCK_RADIUS_RATIO;
     clock.x = canvas.width / 2;
     clock.y = canvas.height / 2;
+
+    if (!clockSmall && clock.radius < BREAK_POINT_RADIUS) {
+      clock.setClockHandsThickness("H", HOUR_HANDS_THICKNESS_SMALL);
+      clock.setClockHandsThickness("M", MINUTE_HANDS_THICKNESS_SMALL);
+      clock.setClockHandsThickness("S", SECOND_HANDS_THICKNESS_SMALL);
+      clockSmall = true;
+    } else if (clockSmall && clock.radius >= BREAK_POINT_RADIUS) {
+      clock.setClockHandsThickness("H", HOUR_HANDS_THICKNESS);
+      clock.setClockHandsThickness("M", MINUTE_HANDS_THICKNESS);
+      clock.setClockHandsThickness("S", SECOND_HANDS_THICKNESS);
+      clockSmall = false;
+    }
     clock.initFontInfo(ctx);
     clock.calcClockFace();
   };
