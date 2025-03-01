@@ -37,6 +37,10 @@ class Clock {
     this.fontSize = this.#radius * 0.1;
   }
 
+  get radius() {
+    return this.#radius;
+  }
+
   //通常の数字とローマ数字の切り替え
   switchDisplayRoman(roman) {
     this.roman = roman;
@@ -180,6 +184,14 @@ class Clock {
     ctx.arc(this.x, this.y, this.#radius * 0.02, 0, Math.PI * 2);
     ctx.stroke();
     ctx.fill();
+  }
+
+  setClockHandsThickness(type, thickness) {
+    for (const clockHands of this.clockHands) {
+      if (clockHands.type == type) {
+        clockHands.thickness = thickness;
+      }
+    }
   }
 }
 
