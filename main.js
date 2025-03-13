@@ -108,7 +108,7 @@ function update(animInfo) {
           displayRemainingTime.textContent = "復帰中";
         } else {
           displayRemainingTime.textContent =
-            "減速残り時間 : " + Math.floor((slowDownTime - (currentAnimationTime - startSlowDownTime)) / 1000);
+            "復帰まで : " + Math.floor((slowDownTime - (currentAnimationTime - startSlowDownTime)) / 1000) + "秒";
         }
         break;
       case STATE_RETURNING: //復帰中
