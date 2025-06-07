@@ -37,16 +37,38 @@ body {
 }
 
 .ui-item {
-  margin: 20px 0;
   display: flex;
   align-items: center;
+  margin-bottom: 20px;
+}
+
+.ui-item-header {
+  padding: 5px;
+  margin-bottom: 5px;
+  background-color: #f3b093;
+}
+
+.ui-item-body {
+  margin: 0 20px;
+}
+
+.ui-item-content {
+  width: 100%;
+}
+
+.ui-item-flax {
+  display: flex;
+}
+
+.ui-center {
+  justify-content: center;
 }
 
 .ui-right {
   justify-content: right;
 }
 
-.ui-item > * {
+.ui-margin-right {
   margin-right: 10px;
 }
 
@@ -68,6 +90,7 @@ body {
 }
 
 .ui-btn {
+  width: 100%;
   height: 40px;
   padding: 5px;
   border: 2px solid #eeaa00;
@@ -87,6 +110,7 @@ body {
 }
 
 .ui-disabled-btn {
+  width: 100%;
   height: 40px;
   padding: 5px;
   border: 2px solid #505050;
@@ -107,6 +131,7 @@ body {
 }
 
 .ui-select-box {
+  width: 100%;
   padding: 5px;
 }
 
@@ -220,7 +245,5 @@ body {
 
 .global-navigation {
   padding-top: 40px;
-  padding-right: 25px;
   padding-bottom: 120px;
-  padding-left: 25px;
 }

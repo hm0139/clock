@@ -27,26 +27,51 @@
           </button>
           <div class="header__nav-area js-nav-area" id="navigation">
             <nav id="js-global-navigation" class="global-navigation">
-              <div class="ui-item">
-                <input type="button" value="スイープ運針" id="switch-clock" class="ui ui-btn" />
+              <div class="ui-item ui-center">
+                <div class="ui-item-content">
+                  <div class="ui-item-body">
+                    <input type="button" value="スイープ運針" id="switch-clock" class="ui ui-btn" />
+                  </div>
+                </div>
               </div>
               <div class="ui-item">
-                <input type="checkbox" value="true" checked id="show-numbers" class="ui ui-checkbox" />
-                <label for="show-numbers" class="ui">文字盤を表示</label>
+                <div class="ui-item-content">
+                  <div class="ui-item-body">
+                    <input type="checkbox" value="true" checked id="show-numbers" class="ui ui-checkbox" />
+                    <label for="show-numbers" class="ui">文字盤を表示</label>
+                  </div>
+                </div>
               </div>
               <div class="ui-item">
-                <input type="checkbox" value="true" id="roman-numbers" class="ui ui-checkbox" />
-                <label for="roman-numbers" class="ui">ローマ数字にする</label>
+                <div class="ui-item-content">
+                  <div class="ui-item-body">
+                    <input type="checkbox" value="true" id="roman-numbers" class="ui ui-checkbox" />
+                    <label for="roman-numbers" class="ui">ローマ数字にする</label>
+                  </div>
+                </div>
               </div>
               <div class="ui-item">
-                <input type="button" value="時を遅らせる" id="slow-down" class="ui ui-btn" />
-                <input type="button" value="中止" id="slow-down-cancel" disabled class="ui-disabled-btn" />
+                <div class="ui-item-content">
+                  <div class="ui-item-body ui-item-flax">
+                    <input type="button" value="時を遅らせる" id="slow-down" class="ui ui-btn ui-margin-right" />
+                    <input type="button" value="中止" id="slow-down-cancel" disabled class="ui-disabled-btn" />
+                  </div>
+                </div>
               </div>
               <div class="ui-item">
-                <select id="slow-down-time-list" class="ui-select-box"></select>
+                <div class="ui-item-content">
+                  <div class="ui-item-header">遅らせる時間</div>
+                  <div class="ui-item-body">
+                    <select id="slow-down-time-list" class="ui-select-box"></select>
+                  </div>
+                </div>
               </div>
               <div class="ui-item">
-                <span id="display-remaining-time"></span>
+                <div class="ui-item-content">
+                  <div class="ui-item-body">
+                    <span id="display-remaining-time"></span>
+                  </div>
+                </div>
               </div>
               <div id="focus-trap" tabindex="0"></div>
             </nav>
