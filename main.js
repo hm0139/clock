@@ -133,9 +133,11 @@ function update(animInfo) {
             const slowDownBtn = document.getElementById("slow-down");
             const slowCancel = document.getElementById("slow-down-cancel");
             slowDownBtn.disabled = false;
-            slowDownBtn.className = "ui ui-btn";
+            slowDownBtn.classList.remove("ui-disabled-btn");
+            slowDownBtn.classList.add("ui", "ui-btn");
             slowCancel.disabled = true;
-            slowCancel.className = "ui-disabled-btn";
+            slowCancel.classList.remove("ui", "ui-btn");
+            slowCancel.classList.add("ui-disabled-btn");
             displayRemainingTime.textContent = "";
           }
         }
@@ -295,9 +297,11 @@ function main() {
   const slowCancel = document.getElementById("slow-down-cancel");
   slowDownBtn.addEventListener("click", () => {
     slowDownBtn.disabled = true;
-    slowDownBtn.className = "ui-disabled-btn";
+    slowDownBtn.classList.remove("ui", "ui-btn");
+    slowDownBtn.classList.add("ui-disabled-btn");
     slowCancel.disabled = false;
-    slowCancel.className = "ui ui-btn";
+    slowCancel.classList.remove("ui-disabled-btn");
+    slowCancel.classList.add("ui", "ui-btn");
     displayRemainingTime.textContent = "減速中";
     animation.setExtraData({
       clockStatus: STATE_SLOWING_DOWN,
@@ -307,9 +311,11 @@ function main() {
 
   slowCancel.addEventListener("click", () => {
     slowDownBtn.disabled = false;
-    slowDownBtn.className = "ui ui-btn";
+    slowDownBtn.classList.remove("ui-disabled-btn");
+    slowDownBtn.classList.add("ui", "ui-btn");
     slowCancel.disabled = true;
-    slowCancel.className = "ui-disabled-btn";
+    slowCancel.classList.remove("ui", "ui-btn");
+    slowCancel.classList.add("ui-disabled-btn");
     displayRemainingTime.textContent = "";
     animation.setExtraData({
       clockStatus: STATE_USUALLY,
