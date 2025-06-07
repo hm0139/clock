@@ -45,6 +45,10 @@ const SECOND_HANDS_OFFSET = 0.1;
 const COOKIE_LIFESPAN_MONTH = 6;
 
 //更新処理
+/**
+ *
+ * @param {import("./animation.js").AnimInfo} animInfo
+ */
 function update(animInfo) {
   const { currentAnimationTime, setExtraData, getExtraData } = animInfo;
   const {
@@ -154,6 +158,7 @@ function switchButtonValue(element, sweep) {
 
 //エントリポイント
 function main() {
+  /** @type {HTMLCanvasElement} */
   const canvas = document.getElementById("main");
   const ctx = canvas.getContext("2d");
 

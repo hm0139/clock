@@ -1,5 +1,36 @@
 import { rotateFillText } from "./util.js";
 
+/**
+ * @typedef {Object} Position
+ * @property {Number} tipX
+ * @property {Number} tipY
+ * @property {Number} behindX
+ * @property {Number} behindY
+ */
+/**
+ * @typedef {Object} ClockHands
+ * @property {String} type
+ * @property {Number} lengthRatio
+ * @property {Number} offset
+ * @property {Number} thickness
+ * @property {String} color
+ * @property {Position} position
+ */
+/**
+ * @typedef {Object} Scale
+ * @property {Number} sx1
+ * @property {Number} sy1
+ * @property {Number} sx2
+ * @property {Number} sy2
+ */
+/**
+ * @typedef {Object} ClockNumber
+ * @property {String} text
+ * @property {Number} X
+ * @property {Number} y
+ * @property {Number} angle
+ */
+
 class Clock {
   /*
   clockHands{
@@ -16,32 +47,68 @@ class Clock {
     }
   }
   */
+  /** @type {String[]} */
   static romanNumbers = ["I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX", "X", "XI", "XII"];
+  /** @type {Number} */
   #radius = 0;
+
+  /**
+   * コンストラクタ
+   * @param {Number} x 時計のX座標
+   * @param {Number} y 時計のY座標
+   * @param {Number} radius 時計の半径
+   * @param {Date} date 時刻
+   * @param {ClockHands[]} clockHands 時計の針の情報
+   * @param {Boolean} sweep スイープ運針か
+   * @param {Boolean} [showNumbers = true] 文字盤を表示するか
+   * @param {Boolean} [roman = true] 文字盤の数字をローマ数字にするか
+   */
   constructor(x, y, radius, date, clockHands, sweep, showNumbers = true, roman = false) {
+    /** @type {Number} */
     this.x = x;
+    /** @type {Number} */
     this.y = y;
+    /** @type {Number} */
     this.#radius = radius;
+    /** @type {Date} */
     this.date = date;
+    /** @type {ClockHands} */
     this.clockHands = clockHands;
+    /** @type {Boolean} */
     this.sweep = sweep;
+    /** @type {Scale[]} */
     this.scales = [];
+    /** @type {ClockNumber[]} */
     this.numbers = [];
+    /** @type {Boolean} */
     this.showNumbers = showNumbers;
+    /** @type {Boolean} */
     this.roman = roman;
+    /** @type {Number} */
     this.fontSize = this.#radius * 0.1;
   }
 
+  /**
+   * 時計の半径の設定
+   * @param {Number} radius 時計の半径
+   */
   set radius(radius) {
     this.#radius = radius;
     this.fontSize = this.#radius * 0.1;
   }
 
+  /**
+   * 時計の半径の取得
+   * @returns {Number} 時計の半径
+   */
   get radius() {
     return this.#radius;
   }
 
-  //通常の数字とローマ数字の切り替え
+  /**
+   * 通常の数字とローマ数字の切り替え
+   * @param {Boolean} roman ローマ数字か
+   */
   switchDisplayRoman(roman) {
     this.roman = roman;
     if (this.roman) {
@@ -55,7 +122,10 @@ class Clock {
     }
   }
 
-  //フォントの初期化
+  /**
+   * フォントの初期化
+   * @param {CanvasRenderingContext2D} ctx 描画コンテキスト
+   */
   initFontInfo(ctx) {
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
@@ -63,7 +133,10 @@ class Clock {
     ctx.font = `${this.fontSize}px ${bodyFontFamily}`;
   }
 
-  //時計の文字盤のメモリや文字の位置の計算
+  /**
+   * 時計の文字盤のメモリや文字の位置の計算
+   * @returns {void}
+   */
   calcClockFace() {
     const scaleLength1 = this.#radius - this.#radius * 0.9;
     const scaleLength2 = this.#radius - this.#radius * 0.95;
@@ -91,7 +164,10 @@ class Clock {
     }
   }
 
-  //時計の針の角度計算
+  /**
+   * 時計の針の角度計算
+   * @returns {void}
+   */
   calcAngleOfClockHands() {
     for (let [index, hands] of this.clockHands.entries()) {
       let angleWidth = 0;
@@ -135,7 +211,10 @@ class Clock {
     }
   }
 
-  //時計の描画
+  /**
+   * 時計の描画
+   * @param {CanvasRenderingContext2D} ctx 描画コンテキスト
+   */
   draw(ctx) {
     //時計の枠部分の描画
     ctx.lineWidth = 4;
@@ -186,6 +265,11 @@ class Clock {
     ctx.fill();
   }
 
+  /**
+   * 針の太さの設定
+   * @param {String} type 針の種類
+   * @param {Number} thickness 太さ
+   */
   setClockHandsThickness(type, thickness) {
     for (const clockHands of this.clockHands) {
       if (clockHands.type == type) {
